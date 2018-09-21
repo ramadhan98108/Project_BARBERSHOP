@@ -1,0 +1,38 @@
+<script type="text/javascript">
+	document.title="Edit Barang";
+	document.getElementById('owner_barang').classList.add('active');
+</script>
+
+<div class="content">
+	<div class="padding">
+		<div class="bgwhite">
+			<div class="padding">
+				<h3 class="jdl">Edit Barang</h3>
+				<?php
+				$f=$root->edit_barang($_GET['id_barang']);
+				?>
+				<form class="form-input" method="post" action="handler.php?action=owner_edit_barang" style="padding-top: 30px;">	<input type="hidden" name="id_barang" value="<?= $f['id_barang'] ?>">
+					<input type="text" placeholder="ID Kategori" disabled="disabled" value="ID barang : <?= $f['id_barang'] ?>">
+					<label>Nama Barang :</label>
+					<input type="text" name="nama_barang" placeholder="Nama Barang" required="required" value="<?= $f['nama_barang'] ?>">
+					<label>Stock 	   :</label>
+					<input name="stok" placeholder="Stok" required="required" value="<?= $f['stok'] ?>">
+					<label>Harga Beli  :</label>
+					<input name="harga_beli" placeholder="Harga" required="required" value="<?= $f['harga_beli'] ?>">
+					<label>Lokasi      :</label>
+					<select style="width: 372px;cursor: pointer;" required="required" name="alamat">
+						<option value="">Pilih lokasi :</option>
+						<?php $root->tampil_lokasi($_GET['id_barang']); ?>
+					</select>
+					<label>Kategori    :</label>
+					<select style="width: 372px;cursor: pointer;" required="required" name="kategori">
+						<option value="">Pilih Kategori :</option>
+						<?php $root->tampil_kategori3($_GET['id_barang']); ?>
+					</select>
+					<button class="btnblue" type="submit"><i class="fa fa-save"></i> Simpan</button>
+					<a href="owner_barang.php" class="btnblue" style="background: #f33155"><i class="fa fa-close"></i> Batal</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
